@@ -239,7 +239,9 @@ func GetAttr(v Value, attr Value, args ...Value) (Value, error) {
 		}
 	}
 	if !retval.IsValid() {
-		return nil, fmt.Errorf("getattr: unable to locate attribute \"%s\" on \"%v\"", attr, v)
+		// see: https://github.com/tyler-sommer/stick/issues/43
+		return nil, nil
+		//return nil, fmt.Errorf("getattr: unable to locate attribute \"%s\" on \"%v\"", attr, v)
 	}
 	if retval.Kind() == reflect.Func {
 		t := retval.Type()
